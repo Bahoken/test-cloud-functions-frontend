@@ -22,22 +22,14 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 // const functions = getFunctions(app);
-const registerUser = firebase.functions().httpsCallable('registerUser');
+const registerUser = firebase.functions().httpsCallable('manage_user');
 
 const registerUserFunc = (data) => {
   
-  registerUser({ 
-    email: data.mail, 
-    password: data.pass, 
-    firstname: data.firstname, 
-    name: data.name, 
-    country: data.country, 
-    city: data.city ,
-    phone: data.phone
-  })
+  registerUser(data)
   .then((res) => {
-    const userId = res.data.userId;
-    console.log('User created with ID:', userId);
+    // const userId = res.data.userId;
+    console.log('User created with ID:', res);
   })
 
 }

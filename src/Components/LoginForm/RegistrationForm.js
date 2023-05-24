@@ -2,6 +2,7 @@ import { registerUserFunc } from '../../Firebase/Firebase';
 import React, { useState } from 'react';
 
 const RegistrationForm = () => {
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -13,18 +14,21 @@ const RegistrationForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    const user = {
-        firstname: firstName,
-        name: lastName,
-        mail: email,
-        country: country,
-        city: city,
-        phone: phone,
-        pass: password
+    const data = {
+        action: 'SUBSCRIBE',
+        user : {
+          firstname: firstName,
+          name: lastName,
+          mail: email,
+          country: country,
+          city: city,
+          phone: phone,
+          pass: password
+        }  
     }
 
     
-    registerUserFunc(user);
+    registerUserFunc(data);
     // Effectuer des actions supplémentaires, comme la validation des champs ou l'envoi des données au serveur
   
   };
