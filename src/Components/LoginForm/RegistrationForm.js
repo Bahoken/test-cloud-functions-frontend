@@ -1,4 +1,4 @@
-import { registerUserFunc } from '../../Firebase/Firebase';
+import { manageUserFunc } from '../../Firebase/Firebase';
 import React, { useState } from 'react';
 
 const RegistrationForm = () => {
@@ -28,7 +28,7 @@ const RegistrationForm = () => {
     }
 
     
-    registerUserFunc(data);
+    manageUserFunc(data);
     // Effectuer des actions supplémentaires, comme la validation des champs ou l'envoi des données au serveur
   
   };

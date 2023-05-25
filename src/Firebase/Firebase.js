@@ -2,6 +2,8 @@
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/functions";
+import "firebase/compat/auth";
+
 
 // import { initializeApp } from "firebase-admin";
 // import { getFunctions, httpsCallable } from "firebase/functions";
@@ -21,18 +23,23 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
+
+//invoke authentication 
+const auth = app.auth();
+
 // const functions = getFunctions(app);
-const registerUser = firebase.functions().httpsCallable('manage_user');
+const manageUser = firebase.functions().httpsCallable('manage_user');
 
-const registerUserFunc = (data) => {
-  
-  registerUser(data)
-  .then((res) => {
-    // const userId = res.data.userId;
-    console.log('User created with ID:', res);
-  })
-
+const manageUserFunc = (data) => {
+  return manageUser(data);
+  // manageUser(data)
+  // .then((res) => {
+  //   const response = res;
+  //   // const userId = res.data.userId;
+  //   console.log('User created with ID:', res);
+  //   return response;
+  // })
 }
 
-export { registerUserFunc };
+export { manageUserFunc,auth };
 // export default app;
