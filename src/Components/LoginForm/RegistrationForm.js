@@ -19,11 +19,11 @@ const RegistrationForm = () => {
         user : {
           firstname: firstName,
           name: lastName,
-          mail: email,
+          email: email,
           country: country,
           city: city,
           phone: phone,
-          pass: password
+          password: password
         }  
     }
 

@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserAuth } from '../../AuthContext/AuthContext';
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState();
+  const navigate = useNavigate();
+  const { signIn } = UserAuth();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    
     e.preventDefault();
     // Effectuer des actions supplémentaires, comme la validation des champs ou l'envoi des données au serveur
+    setError('');
+
+    try {
+      await signIn(email, password)
+      navigate('/dashboard')
+    } catch (e) {
+      setError(e.message)
+      console.log(e.message)
+    }
     
   };
 
@@ -51,6 +66,8 @@ const LoginForm = () => {
           </button>
         </form>
       
+        <h1 className='text-red-500 mt-10'>{ error && error.message }</h1>
+        
       </div>
     </div>
   );
